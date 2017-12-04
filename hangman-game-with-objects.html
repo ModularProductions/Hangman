@@ -1,0 +1,76 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+<title>Hangman</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+<!-- <link href="stylesheet.css" rel="stylesheet" type="text/css"> -->
+</head>
+<body lang="en-US">
+  <div class="container">
+    <div class="jumbotron" style="text-align: center">
+      <div id="game">...</div>
+      <p><a class="btn btn-primary btn-lg" href="javascript:history.go(0)" role="button">Start a New Game</a></p>
+    </div>
+  </div>
+  <script type="text/javascript">
+
+
+    var dictionary = ["survivor","directory","wisecrack","survival","application","parachute","innocent","consideration","discover","cylinder","liability","majority","circumstance","flatware","interrupt","transfer","skeleton","craftsman","multimedia","hardship","implicit","compound","inhabitant","finished","depressed","reduction","triangle","fountain","correspondence","unanimous","umbrella","elaborate","revolutionary","confrontation","horseshoe","opponent","manufacturer","undermine","director","sentence","patience","expression","competition","flourish","feminist","important","anticipation","disappoint","unpleasant","dressing","emphasis","difference","astonishing","insurance","ostracize","policeman","microphone","shareholder","handicap","eliminate","orthodox","experiment","photograph","volunteer","transition","horoscope","compartment","ambiguity","presidency","scenario","reinforce","advertise","classroom","prevalence","expenditure","conception","abstract","theorist","domestic","disgrace","ministry","attitude","computer","corruption","communication","weakness","beginning","conflict","electronics","convulsion","personality","simplicity","midnight","accompany","reaction","necklace","publisher","potential","intelligence","worthless","door","needless","pathetic","stain","loaf","splendid","grumpy","puny","rainy","interfere","impartial","uppity","humorous","purpose","workable","thrill","nail","periodic","vein","warn","lively","religion","jittery","merciful","snow","relax","gratis","defiant","innocent","skinny","laugh","elated","silk","turkey","collar","sneaky","jazzy","punishment","canvas","cute","examine","unsightly","duck","fail","cushion","produce","hunt","cute","ring","cat","jellyfish","rabbits","entertain","itchy","outstanding","race","bead","art","committee","bless","ready","birthday","grin","load","noiseless","replace","gamy","serious","tow","day","effect","faint","resonant","book","wall","mere","consist","hop","solid","clean","seat","elastic","apparatus","quilt","scold","dinosaurs","rinse","rot","panicky","sable","credit","sigh","honorable","correct","unwieldy"];
+    var alertDisplay = "<p>Waiting on you, chief.</p>";
+    var userInput = "";
+    var currentGame = "";
+    var games = [];
+    var gameCounter = -1;
+
+
+    function Game(name) {
+      this.name = name
+    }
+
+    // start New Game
+    games.push({
+      currentWord : [],
+      usedLetters : [],
+      maskedWord : "",
+      usedDisplay : "",
+      strikes : 0,
+      hardcore : false,
+      function displayRenders() {
+        this.maskedWord = "";
+        for (i = 0 ; i < this.currentWord.length ; i++) {
+          if (this.usedLetters.includes(this.currentWord[i])) {
+            this.maskedWord = maskedWord + this.currentWord[i].toUpperCase() + " ";
+          } else {
+            this.maskedWord = maskedWord + "_ ";
+          }
+        };
+        this.usedDisplay = "";
+        if (this.hardcore) {
+          this.usedDisplay = "Your last pick was '" + userInput.toUpperCase() + "'."
+        } else for (i = 0 ; i < this.usedLetters.length; i++) {
+          this.usedDisplay = this.usedDisplay + this.usedLetters[i].toUpperCase() + " ";
+        };
+      }
+    });
+
+    // Start of Game
+
+    // End of Game
+
+
+    var selectWord = dictionary[Math.floor(Math.random() * dictionary.length)];
+
+
+  </script>
+</body>
+</html>
