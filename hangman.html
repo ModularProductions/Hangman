@@ -19,6 +19,11 @@
   <div class="container">
     <div class="jumbotron" style="text-align: center">
       <div id="game">...</div>
+      <h1 id="title"></h1>
+      <p id="maskedWord"></p>
+      <p id="alertDisplay"></p>
+      <p id="usedLetters"></p>
+      <p id="strikes"></p>
       <p><a class="btn btn-primary btn-lg" href="javascript:history.go(0)" role="button">Start a New Game</a></p>
     </div>
   </div>
@@ -146,7 +151,13 @@
         "<h2>You've escaped justice.</h2>";
       };
 
+
       document.querySelector("#game").innerHTML = html;
+      document.querySelector("#title").innerHTML = title; // remove h1 tags from title variable
+      document.querySelector("#maskedWord").innerHTML = maskedWord;
+      document.querySelector("#alertDisplay").innerHTML = alertDisplay;
+      document.querySelector("#usedLetters").innerHTML = usedLetters;
+      document.querySelector("#strikes").innerHTML = strikes + " / 7";
     }  
   </script>
 </body>
