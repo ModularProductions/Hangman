@@ -9,11 +9,11 @@ var dictionary = ["survivor","directory","wisecrack","survival","application","p
     var userInput = "";
     var hardcore;
 
-    var title = "<h1>Hangman</h1>";
-    if (confirm("Are you truly HARD CORE?")) {
-      hardcore = true;
-      title = "<h1>Hardcore Hangman<h1>";
-    }
+    var title = "Hangman";
+    // if (confirm("Are you truly HARD CORE?")) {
+    //   hardcore = true;
+    //   title = "<h1>Hardcore Hangman<h1>";
+    // }
 
     // select word from dictionary
     var selectWord = dictionary[Math.floor(Math.random() * dictionary.length)];
@@ -26,6 +26,8 @@ var dictionary = ["survivor","directory","wisecrack","survival","application","p
       currentWord.push(letter);
     };
     console.log("initial currentWord: " + currentWord);
+
+    // document.getElementById("restartButton").addEventListener("onmouseup", myFunction);
 
     function displayRenders() {
       maskedWord = "";
@@ -43,6 +45,15 @@ var dictionary = ["survivor","directory","wisecrack","survival","application","p
       } else for (i = 0 ; i < usedLetters.length; i++) {
         usedDisplay = usedDisplay + usedLetters[i].toUpperCase() + " ";
       };
+      document.querySelector("#title").innerHTML = title;
+      document.querySelector("#maskedWord").innerHTML = maskedWord;
+      document.querySelector("#usedLetters").innerHTML = usedLetters;
+      document.querySelector("#alertDisplay").innerHTML = alertDisplay;
+      document.querySelector("#strikes").innerHTML = "<p>" + strikes + " / 7</p>";
+      document.querySelector("#gamesWon").innerHTML = gamesWon;
+      document.querySelector("#hardcoreGamesWon").innerHTML = hardcoreGamesWon;
+      // document.querySelector("backgroundImage").innerHTML = "<img src=\"http://www.placehold.it/350x150\" width=\"350\" height=\"150\">";
+
     };
 
     displayRenders();
@@ -55,7 +66,7 @@ var dictionary = ["survivor","directory","wisecrack","survival","application","p
         "<p>Strikes: " + strikes + " / 7</p>";
     document.querySelector("#game").innerHTML = html;  
 
-    document.onkeyup = function(event) {
+    document.addEventListener = ("onkeyup", function(event) {
       
       userInput = event.key.toUpperCase();
 
@@ -114,4 +125,12 @@ var dictionary = ["survivor","directory","wisecrack","survival","application","p
       };
 
       document.querySelector("#game").innerHTML = html;
-    }  
+    });
+
+    // document.removeEventListener("onkeyup" function(event))
+
+
+
+    // document.addEventListener = ("onkeyup", function(event) {});
+    
+    }
