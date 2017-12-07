@@ -70,6 +70,12 @@ section {
 
 }
 
+#restartButton {
+  background-color: red;
+  display: inline-block;
+  padding: .5rem 2rem;
+}
+
 footer {
   height: 70px; /* your footer height */
   margin-top: -70px; /* your footer height as negative amount */
