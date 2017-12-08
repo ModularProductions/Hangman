@@ -7,7 +7,6 @@ var hardcoreGameWins = 0;
 var hardcoreGameTotal = 0;
 var userInput = "";
 var hardcore = false;
-var title = "Hangman";
 var alertDisplay;
 var currentWord = [];  
 var usedLetters = [];
@@ -19,14 +18,18 @@ function initializeGame() {
   currentWord = [];  
   usedLetters = [];
   strikes = 0;
-  if (hardcore === true) {title = "Hardcore Hangman"} else {title = "Hangman"};
-  document.querySelector("#endGameAlert").textContent = "";  
+  if (hardcore === true) {
+    document.getElementById("hardcoreTitle").classList.remove("hidden");
+  } else {
+    document.getElementById("hardcoreTitle").classList.add("hidden");
+  };
   var selectWord = dictionary[Math.floor(Math.random() * dictionary.length)];
   for (i = 0; i < selectWord.length; i++) {
     var letter = selectWord.charAt(i).toUpperCase();
     currentWord.push(letter);
   };
   console.log(currentWord);
+  
 };
 
 function updateDisplay() {
@@ -44,13 +47,12 @@ function updateDisplay() {
   } else for (i = 0; i < usedLetters.length; i++) {
     usedDisplay = usedDisplay + usedLetters[i].toUpperCase() + " ";
   };
-  document.querySelector("#title").textContent = title; 
   document.querySelector("#maskedWord").textContent = maskedWord;
   document.querySelector("#usedDisplay").textContent = "Used Letters: " + usedDisplay;
   document.querySelector("#alertDisplay").textContent = alertDisplay;
-  document.querySelector("#strikes").textContent = "Strikes: " + strikes + " / 7";
-  document.querySelector("#vanillaRecord").textContent = "Vanilla games won: " + vanillaGameWins + " / " + vanillaGameTotal;
-  document.querySelector("#hardcoreRecord").textContent = "Hardcore games won: " + hardcoreGameWins + " / " + hardcoreGameTotal;
+  document.querySelector("#strikes").textContent = strikes + " / 7";
+  document.querySelector("#vanillaRecord").textContent = vanillaGameWins + " / " + vanillaGameTotal;
+  document.querySelector("#hardcoreRecord").textContent = hardcoreGameWins + " / " + hardcoreGameTotal;
 };
 
 function acceptInputs(event) {
@@ -69,8 +71,8 @@ function acceptInputs(event) {
     if (hardcore) { strikes++; };
   };
   updateDisplay();
-  if (strikes === 7) lose();
-  if (!maskedWord.includes("_")) win();
+  if (strikes === 7) lose()
+  else if (!maskedWord.includes("_")) win();
 }
 
 function lose() {
@@ -78,11 +80,23 @@ function lose() {
     hardcoreGameTotal++;
   } else {
     vanillaGameTotal++;
+    maskedWord = "";
+    for (i = 0; i < currentWord.length; i++) {
+      if (usedLetters.includes(currentWord[i])) {
+        maskedWord = maskedWord + currentWord[i].toUpperCase() + " ";
+      } else {
+        maskedWord = maskedWord + currentWord[i].toLowerCase() + " ";
+      }
+    };  
+    document.querySelector("#maskedWord").textContent = maskedWord;    
   };
+  document.getElementById("lower-middle").innerHTML = "<img src='assets/images/boots.jpg' class='swingimage' width='250' height='200' />"
+  document.querySelector("#vanillaRecord").textContent = vanillaGameWins + " / " + vanillaGameTotal;
+  document.querySelector("#hardcoreRecord").textContent = hardcoreGameWins + " / " + hardcoreGameTotal;
+  document.querySelector("#alertDisplay").textContent = "You've met your deserved justice! Press any key to start a new game!";
   document.removeEventListener("keyup", acceptInputs);  
-  document.querySelector("#endGameAlert").textContent = "You lost! Press any key to start a new game!";
+  lastGameWon = false;
   document.addEventListener("keyup", game);
-  lastgameWon = false;
 };
 
 function win() {
@@ -93,29 +107,33 @@ function win() {
     vanillaGameTotal++;
     vanillaGameWins++;
   };
+  document.querySelector("#vanillaRecord").textContent = vanillaGameWins + " / " + vanillaGameTotal;
+  document.querySelector("#hardcoreRecord").textContent = hardcoreGameWins + " / " + hardcoreGameTotal;
   document.removeEventListener("keyup", acceptInputs);  
-  document.querySelector("#endGameAlert").textContent = "You won! Press any key to start a new game!";
+  document.querySelector("#alertDisplay").textContent = "You've escaped the noose! Press any key to start a new game, or press 'H' for a tougher challenge!";
   document.addEventListener("keyup", game);
   lastGameWon = true;
 };
 
 // display opening items
-document.querySelector("#title").textContent = title;
 document.querySelector("#alertDisplay").textContent = "Press any key to start!";
 
 // at keypress, start game
 document.addEventListener("keyup", game);
 
+
 function game(event) {
+  document.getElementById("lower-middle").innerHTML = "Strikes<p id='strikes'></p>"  
+  document.getElementById("lower-left").classList.remove("hidden");
+  document.getElementById("lower-middle").classList.remove("hidden");
+  document.getElementById("lower-right").classList.remove("hidden");
   document.removeEventListener("keyup", game);
   if (lastGameWon === true && event.key.toUpperCase() === "H") {hardcore = true} else {hardcore = false};
   initializeGame();
-    console.log("usedDisplay = " + usedDisplay);
   updateDisplay();
-  document.querySelector("#alertDisplay").textContent = "Waiting on you, chief.";
+  document.querySelector("#alertDisplay").textContent = "Waiting on you, chief. Type a letter.";
   document.querySelector("#usedDisplay").textContent = "Used Letters: You ain't picked nothin' yet.";
-  document.addEventListener("keyup", acceptInputs)
-
+  document.addEventListener("keyup", acceptInputs);
 };
 
 

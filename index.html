@@ -12,20 +12,19 @@
   <link rel="stylesheet" type ="text/css" href="assets/css/style.css">
 </head>
 <body lang="en-US">
-
-  <div id="game">...</div>
-  <img src="http://www.placehold.it/300x150" />
-
-  <h1><span id="title"></span></h1>
-  </p><span id="maskedWord"></span></p>
-  </p><span id="alertDisplay"></span></p>
-  </p><span id="usedDisplay"></span></p>
-  </p><span id="strikes"></span></p>
-  </p><span id="endGameAlert"></span></p>
-  </p><span id="vanillaRecord"></span></p>
-  </p><span id="hardcoreRecord"></span></p>
-  <div id="restartButton">give up and start over</div>
-  <!-- <div id="backgroundImage">...</div> -->
+  <div id="wrap">
+    <div id="content-bg">
+      <h1><span id="hardcoreTitle" class="hidden">HARDCORE</span></h1>
+      <h2>Hangman</h2>
+      <p><span id="maskedWord"></span></p>
+      <p><span id="alertDisplay"></span></p>
+      <p><span id="usedDisplay"></span></p>
+      <div id="lower-left" class="hidden">Vanilla games won<p id="vanillaRecord"></p></div>
+      <div id="lower-middle" class="hidden">Strikes<p id="strikes"></p></div>
+      <div id="lower-right" class="hidden">Hardcore games won<p id="hardcoreRecord"></p></div>
+      <!-- <div id="restartButton">give up and start over</div> -->
+    </div> <!-- content-bg -->
+  </div> <!-- wrap -->
   <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

@@ -1,76 +1,19 @@
-Stopping input routine?
-how to change images if innerHTML isn't available?
+
 making game as object?
+  //games = [];
+  //gameCounter = -1;
+mobile-friendly letter input?
+jQuery in CSS?
+
 
 to do:
-  use jQuery $("#maskedWord").append(currentWord[i]) to construct maskedWord
-
-
-function restartGame() {return;};
-jQuery $("#restartButton").on("click", restartGame);
-
-
-// USE FOR LOOP FOR GAME?
-  // Is this a bad way to use a "for" loop? (Turning it into a while...do loop)
-  // i.e. using condition to end loop without iterating (eliminating final expression)
-for (strikes = 7 ; strikes > 0 ; ) { 
-  var randomInput = Math.floor(Math.random() * 3);
-  console.log(randomInput);
-  if (randomInput != 2) {
-    console.log("good guess!");
-  } else {strikes--; console.log("bad guess!")};
-  console.log("strikes: " + strikes);
-};
-console.log("Done");
-
-var strikes = 3;
-
-while(strikes > 0){
-  var randomInput = Math.floor(Math.random() * 3);
-  console.log(randomInput);
-  if (randomInput != 2) {
-    console.log("good guess!");
-  } else {strikes--; console.log("bad guess!")};
-  console.log("strikes: " + strikes);
-  console.log("--------");  
-}
-console.log("Done");
+  update game counts at end of game rather than start of new one
+  add restart button functionality
+    jQuery $("#restartButton").on("click", restartGame);
 
 
 //  Opening Screen
 //  establish global variables
-dictionary = [];
-//games = [];
-//gameCounter = -1;
-gamesWon = 0;
-hardcoreGamesWon = 0;
-function displayRenders() {
-  maskedWord = "";
-  for (i = 0; i < currentWord.length; i++) {
-    if (usedLetters.includes(currentWord[i])) {
-      maskedWord = maskedWord + currentWord[i].toUpperCase() + " ";
-    } else {
-      maskedWord = maskedWord + "_ ";
-    }
-  };
-  console.log("maskedWord: " + maskedWord);
-  usedDisplay = "";
-  if (hardcore) {
-    usedDisplay = "Your last pick was '" + userInput.toUpperCase() + "'."
-  } else for (i = 0 ; i < usedLetters.length; i++) {
-    usedDisplay = usedDisplay + usedLetters[i].toUpperCase() + " ";
-  };
-  document.querySelector("#title").innerHTML = "<h1>" + title + "</h1>";
-  document.querySelector("#maskedWord").innerHTML = "<p>" +  maskedWord + "</p>";
-  document.querySelector("#usedDisplay").innerHTML = "<p>Used Letters: " +  usedDisplay + "</p>";
-  document.querySelector("#alertDisplay").innerHTML = "<p>" +  alertDisplay + "</p>";
-  document.querySelector("#strikes").innerHTML = "<p>Strikes: " + strikes + " / 7</p>" + "</p>";
-  document.querySelector("#endGameAlert").innerHTML = "";
-  document.querySelector("#gamesWon").innerHTML =  "<p>" + gamesWon + "</p>";
-  document.querySelector("#hardcoreGamesWon").innerHTML =  "<p>" + hardcoreGamesWon + "</p>";
-
-};
-
 
 
 
@@ -108,3 +51,90 @@ End Game
   display hardcoreGamesLost
 
 Start new game? Start new hardcore game (if previous game won)?
+
+opening screen
+  establish global variables
+  display opening items
+at keypress, start game
+game
+  establish currentWord
+  create maskedWord
+  display items
+  after each keypress
+    update items
+  when strikes === 0 || currentWord no longer contains "_"
+    update wins or losses
+    display win or loss screen
+  press any key to restart OR press "h" for hardcore game
+
+
+
+
+  
+  function startScreen() {
+  // hardcore?
+  };
+  
+  function runGame() {
+    var usedLetters = [];
+    var currentWord = [];
+    var maskedWord;
+    var alertDisplay = "<p>Waiting on you, chief.</p>";
+    var usedDisplay = "You ain't picked nothin'.";
+    var strikes = 0;
+    var endGameAlert = "";
+  };
+  
+  function displayRenders() {
+    maskedWord = "";
+    for (i = 0; i < currentWord.length; i++) {
+      if (usedLetters.includes(currentWord[i])) {
+        maskedWord = maskedWord + currentWord[i].toUpperCase() + " ";
+      } else {
+        maskedWord = maskedWord + "_ ";
+      }
+    };
+    console.log("maskedWord: " + maskedWord);
+    usedDisplay = "";
+    if (hardcore) {
+      usedDisplay = "Your last pick was '" + userInput.toUpperCase() + "'."
+    } else for (i = 0 ; i < usedLetters.length; i++) {
+      usedDisplay = usedDisplay + usedLetters[i].toUpperCase() + " ";
+    };
+    document.querySelector("#title").innerHTML = "<h1>" + title + "</h1>";
+    document.querySelector("#maskedWord").innerHTML = "<p>" +  maskedWord + "</p>";
+    document.querySelector("#usedDisplay").innerHTML = "<p>Used Letters: " +  usedDisplay + "</p>";
+    document.querySelector("#alertDisplay").innerHTML = "<p>" +  alertDisplay + "</p>";
+    document.querySelector("#strikes").innerHTML = "<p>Strikes: " + strikes + " / 7</p>" + "</p>";
+    document.querySelector("#endGameAlert").innerHTML = "";
+    document.querySelector("#gamesWon").innerHTML =  "<p>" + gamesWon + "</p>";
+    document.querySelector("#hardcoreGamesWon").innerHTML =  "<p>" + hardcoreGamesWon + "</p>";
+  };
+  
+  currentWord = 
+  function createWord () {
+    var selectWord = dictionary[Math.floor(Math.random() * dictionary.length)];
+    for (i = 0 ; i < selectWord.length ; i++) {
+      var letter = selectWord.charAt(i).toUpperCase();
+      currentWord.push(letter);
+    };
+    console.log("initial currentWord: " + currentWord);
+  }
+  
+  // main game body
+  
+  // press any key to start!
+  runGame();
+  
+  while (strikes > 0) {  
+  var randomInput = Math.floor(Math.random() * 3);
+  console.log(randomInput);
+  if (randomInput != 2) {
+    console.log("good guess!");
+  } else {strikes--; console.log("bad guess!")};
+  console.log("strikes: " + strikes);
+  console.log("--------");  
+  }
+  console.log("Done");
+  
+  

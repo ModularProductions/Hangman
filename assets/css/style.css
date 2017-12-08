@@ -1,104 +1,175 @@
-/* fresh stylesheet */
 
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
+@font-face {
+  font-family: WesternBangBang;
+  src: url("Western Bang Bang.ttf");
+}
+
 html, body {
     box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     font-size: 16px;
     line-height: 150%;
-    height: 100%;
-    margin: 0;
-}
-
-body {
-  text-align: center;
-
-}
-
-p {
-
-}
-
-a {
+    color: #bbb;
+    font-family: WesternBangBang;    
+  }
   
+body {
+  padding: 25px;
+  text-align: center;
+  background-image: url("../images/dirt-background.jpg");
+  width: 100%;
+  margin: 0 auto;
 }
-
-h1 {
-
-}
-
-h2 {
-
-}
-
-ul {
-
-}
-
-li {
-  list-style: none;
-  display: inline-block;
-}
-
-input[type=text], input[type=email], textarea {
-
-}
-
-input[type=submit] {
-
-}
-
+  
 #wrap {
   min-height: 100%;
 }
 
-#content {
-  padding-bottom: 70px; /* your footer height */
+#content-bg {
+  /* overflow: auto; */
+  position: relative;
+  background-image: url("../images/50dark.png");
+  margin: 0 auto;
+  padding-bottom: 30px;
+  height: 800px;
+  width: 750px;
+  border-radius: 25px;
+  border-top-right-radius: 300px;
+  border-top-left-radius: 300px;
+  border: solid 5px #111;
 }
 
-header {
+h1 {
+  font-family: Impact;
+  font-size: 100px;
+  font-weight: bold;
+  color: black;
+  height: 120px;
+  text-shadow: -1px 0 rgb(255, 123, 0), 0 1px red, 1px 0 red, 0 -1px red;
+  position: absolute;
+  top: 120px;
+  left: 0;
+  right: 0;
+  z-index: -100;
+}
+
+h2 {  
+  font-size: 120px;
+  line-height: 120px;
+  color: rgb(197, 93, 7);
+  margin-top: 120px;
+  height: 120px;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+}
+
+#usedDisplay, #maskedWord, #alertDisplay {
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;  
+  line-height: 75px;
+  font-size: 50px;
+}
+
+#alertDisplay {
+  color: rgb(219, 106, 13);
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 400px;
+  background-image: url("../images/50dark.png");
+  padding: 15px;
+  height: 120px;
+  width: 80%;
+  font-size: 40px;
+  margin: 0 auto;
+  line-height: 40px;
+  border-radius: 40px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#lower-left, #lower-middle, #lower-right {
+  position: absolute;
+  bottom: 50px;
+  height: 200px;
 
 }
 
-nav {
-
+#lower-left {
+  background-image: url("../images/50dark.png");
+  border: solid 5px #111;  
+  padding: 30px;
+  width: 200px;
+  left: 20px;
+  font-size: 40px;
+  line-height: 30px;
 }
 
-section {
-
+#vanillaRecord {
+  font-size: 60px;
+  margin-top: 35px;
 }
 
-#restartButton {
-  background-color: red;
-  display: inline-block;
-  padding: .5rem 2rem;
+#lower-middle {
+  background-image: url("../images/50dark.png");
+  border: solid 5px #111;  
+  width: 250px;
+  left: 245px;
+  right: 0;
+  font-size: 60px;
+  padding: 40px;
+  line-height: 40px;
+  text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red;  
+}  
+
+#lower-middle img {
+  margin:-46px 0 0 -46px;
 }
 
-footer {
-  height: 70px; /* your footer height */
-  margin-top: -70px; /* your footer height as negative amount */
-  overflow: hidden;
+#lower-middle p {
+  margin: 25px;
 }
 
-/* Tablet Portrait */
-@media screen and (min-width: 600px) {
-  
+#lower-right {
+  background-image: url("../images/50dark.png");
+  border: solid 5px #111;  
+  padding: 30px;
+  width: 200px;
+  right: 20px;
+  font-size: 40px;
+  line-height: 30px;
 }
 
-/* Tablet Landscape */
-@media screen and (min-width: 900px) {
-
+#hardcoreRecord {
+  font-size: 60px;
+  margin-top: 35px;  
 }
 
-/* Desktop */
-@media screen and (min-width: 1200px) {
-
+@-webkit-keyframes swinging{
+  0%{-webkit-transform: rotate(.25deg);}
+  50%{-webkit-transform: rotate(-.25deg)}
+  100%{-webkit-transform: rotate(.25deg);}
 }
 
-/* Big Desktop */
-@media screen and (min-width: 1800px) {
-
+@keyframes swinging{
+  0%{transform: rotate(1deg);}
+  50%{transform: rotate(-1deg)}
+  100%{transform: rotate(1deg);}
 }
 
+.swingimage{
+  -webkit-transform-origin: 50% -1000px;
+  transform-origin: 50% -1000px;
+  -webkit-animation: swinging 7.5s ease-in-out forwards infinite;
+  animation: swinging 7.5s ease-in-out forwards infinite;
+}
+ 
