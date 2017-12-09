@@ -1,15 +1,29 @@
 
+
+clean up code
+add sound effects?
+improve dictionary (maybe add hardcore?)
+preload font?
+
 making game as object?
-  //games = [];
-  //gameCounter = -1;
+//games = [];
+//gameCounter = -1;
 mobile-friendly letter input?
-jQuery in CSS?
 
-
-to do:
-  update game counts at end of game rather than start of new one
-  add restart button functionality
-    jQuery $("#restartButton").on("click", restartGame);
+opening screen
+  establish global variables
+  display opening items
+at keypress, start game
+game
+  establish currentWord
+  create maskedWord
+  display items
+  after each keypress
+    update items
+  when strikes === 0 || currentWord no longer contains "_"
+    update wins or losses
+    display win or loss screen
+  press any key to restart OR press "h" for hardcore game
 
 
 //  Opening Screen
@@ -51,21 +65,6 @@ End Game
   display hardcoreGamesLost
 
 Start new game? Start new hardcore game (if previous game won)?
-
-opening screen
-  establish global variables
-  display opening items
-at keypress, start game
-game
-  establish currentWord
-  create maskedWord
-  display items
-  after each keypress
-    update items
-  when strikes === 0 || currentWord no longer contains "_"
-    update wins or losses
-    display win or loss screen
-  press any key to restart OR press "h" for hardcore game
 
 
 
