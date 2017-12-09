@@ -14,11 +14,25 @@ var strikes = 0;
 var maskedWord = [];
 var lastGameWon = false;
 
+//audio setup
+var audioMute = false;
+function toggleMute() {
+  if (!audioMute) {
+    audioMute = true;
+    document.getElementById("audio").innerHTML = "<span id='audioButton'></span>audio OFF";    
+  } else {
+    audioMute = false;
+    document.getElementById("audio").innerHTML = "<span id='audioButton' class='audioOn'></span>audio ON";    
+  };
+};
+document.getElementById("audio").addEventListener("click", toggleMute);
+
+// initialize New Game
 function initializeGame() {
   currentWord = [];  
   usedLetters = [];
   strikes = 0;
-  if (hardcore === true) {
+  if (hardcore) {
     document.getElementById("hardcoreTitle").classList.remove("hidden");
   } else {
     document.getElementById("hardcoreTitle").classList.add("hidden");
@@ -32,6 +46,7 @@ function initializeGame() {
   
 };
 
+// update display items when input received
 function updateDisplay() {
   maskedWord = "";
   for (i = 0; i < currentWord.length; i++) {
@@ -42,7 +57,7 @@ function updateDisplay() {
     }
   };
   usedDisplay = "";
-  if (hardcore === true) {
+  if (hardcore) {
     usedDisplay = "Your last pick was '" + userInput.toUpperCase() + "'."
   } else for (i = 0; i < usedLetters.length; i++) {
     usedDisplay = usedDisplay + usedLetters[i].toUpperCase() + " ";
@@ -55,6 +70,7 @@ function updateDisplay() {
   document.querySelector("#hardcoreRecord").textContent = hardcoreGameWins + " / " + hardcoreGameTotal;
 };
 
+// receive inputs
 function acceptInputs(event) {
   userInput = event.key.toUpperCase();
   if (!usedLetters.includes(userInput)) {
@@ -75,6 +91,7 @@ function acceptInputs(event) {
   else if (!maskedWord.includes("_")) win();
 }
 
+// lose screen
 function lose() {
   if (hardcore) {
     hardcoreGameTotal++;
@@ -90,6 +107,7 @@ function lose() {
     };  
     document.querySelector("#maskedWord").textContent = maskedWord;    
   };
+  if (!audioMute) {document.getElementById("loseAudio").play()};
   document.getElementById("lower-middle").innerHTML = "<img src='assets/images/loss.png' class='swingimage' width='250' height='200' />"
   document.querySelector("#vanillaRecord").textContent = vanillaGameWins + " / " + vanillaGameTotal;
   document.querySelector("#hardcoreRecord").textContent = hardcoreGameWins + " / " + hardcoreGameTotal;
@@ -99,6 +117,7 @@ function lose() {
   document.addEventListener("keyup", game);
 };
 
+// win screen
 function win() {
   if (hardcore) {
     hardcoreGameWins++;
@@ -107,6 +126,7 @@ function win() {
     vanillaGameTotal++;
     vanillaGameWins++;
   };
+  if (!audioMute) {document.getElementById("winAudio").play()};
   document.getElementById("lower-middle").innerHTML = "<img src='assets/images/win.png' width='250' height='200' />"  
   document.querySelector("#vanillaRecord").textContent = vanillaGameWins + " / " + vanillaGameTotal;
   document.querySelector("#hardcoreRecord").textContent = hardcoreGameWins + " / " + hardcoreGameTotal;
@@ -116,7 +136,7 @@ function win() {
   lastGameWon = true;
 };
 
-// display opening items
+// display opening screen items
 document.querySelector("#alertDisplay").textContent = "Press any key to start!";
 
 // at keypress, start game
@@ -129,7 +149,7 @@ function game(event) {
   document.getElementById("lower-middle").classList.remove("hidden");
   document.getElementById("lower-right").classList.remove("hidden");
   document.removeEventListener("keyup", game);
-  if (lastGameWon === true && event.key.toUpperCase() === "H") {hardcore = true} else {hardcore = false};
+  if (lastGameWon && event.key.toUpperCase() === "H") {hardcore = true} else {hardcore = false};
   initializeGame();
   updateDisplay();
   document.querySelector("#alertDisplay").textContent = "Waiting on you, chief. Type a letter.";

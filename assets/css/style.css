@@ -154,6 +154,29 @@ h2 {
   margin-top: 35px;  
 }
 
+#audio {
+  height: 15px;
+  font-family: Verdana;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  line-height: 15px;
+  display: block;
+}
+
+#audioButton {
+  border-radius: 50%;
+  border: 2px #999 solid; 
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.audioOn {
+  background-color: #999;
+}
+
 @-webkit-keyframes swinging{
   0%{-webkit-transform: rotate(.25deg);}
   50%{-webkit-transform: rotate(-.25deg)}
