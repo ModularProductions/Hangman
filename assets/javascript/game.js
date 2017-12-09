@@ -90,7 +90,7 @@ function lose() {
     };  
     document.querySelector("#maskedWord").textContent = maskedWord;    
   };
-  document.getElementById("lower-middle").innerHTML = "<img src='assets/images/boots.jpg' class='swingimage' width='250' height='200' />"
+  document.getElementById("lower-middle").innerHTML = "<img src='assets/images/loss.png' class='swingimage' width='250' height='200' />"
   document.querySelector("#vanillaRecord").textContent = vanillaGameWins + " / " + vanillaGameTotal;
   document.querySelector("#hardcoreRecord").textContent = hardcoreGameWins + " / " + hardcoreGameTotal;
   document.querySelector("#alertDisplay").textContent = "You've met your deserved justice! Press any key to start a new game!";
@@ -107,6 +107,7 @@ function win() {
     vanillaGameTotal++;
     vanillaGameWins++;
   };
+  document.getElementById("lower-middle").innerHTML = "<img src='assets/images/win.png' width='250' height='200' />"  
   document.querySelector("#vanillaRecord").textContent = vanillaGameWins + " / " + vanillaGameTotal;
   document.querySelector("#hardcoreRecord").textContent = hardcoreGameWins + " / " + hardcoreGameTotal;
   document.removeEventListener("keyup", acceptInputs);  
