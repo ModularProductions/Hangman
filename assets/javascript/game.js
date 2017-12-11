@@ -1,6 +1,8 @@
 
 // establish global variables
 var dictionary = ["survivor", "directory", "wisecrack", "survival", "application", "parachute", "innocent", "consideration", "discover", "cylinder", "liability", "majority", "circumstance", "flatware", "interrupt", "transfer", "skeleton", "craftsman", "multimedia", "hardship", "implicit", "compound", "inhabitant", "finished", "depressed", "reduction", "triangle", "fountain", "correspondence", "unanimous", "umbrella", "elaborate", "revolutionary", "confrontation", "horseshoe", "opponent", "manufacturer", "undermine", "director", "sentence", "patience", "expression", "competition", "flourish", "feminist", "important", "anticipation", "disappoint", "unpleasant", "dressing", "emphasis", "difference", "astonishing", "insurance", "ostracize", "policeman", "microphone", "shareholder", "handicap", "eliminate", "orthodox", "experiment", "photograph", "volunteer", "transition", "horoscope", "compartment", "ambiguity", "presidency", "scenario", "reinforce", "advertise", "classroom", "prevalence", "expenditure", "conception", "abstract", "theorist", "domestic", "disgrace", "ministry", "attitude", "computer", "corruption", "communication", "weakness", "beginning", "conflict", "electronics", "convulsion", "personality", "simplicity", "midnight", "accompany", "reaction", "necklace", "publisher", "potential", "intelligence", "worthless", "door", "needless", "pathetic", "stain", "loaf", "splendid", "grumpy", "puny", "rainy", "interfere", "impartial", "uppity", "humorous", "purpose", "workable", "thrill", "nail", "periodic", "vein", "warn", "lively", "religion", "jittery", "merciful", "snow", "relax", "gratis", "defiant", "innocent", "skinny", "laugh", "elated", "silk", "turkey", "collar", "sneaky", "jazzy", "punishment", "canvas", "cute", "examine", "unsightly", "duck", "fail", "cushion", "produce", "hunt", "cute", "ring", "cat", "jellyfish", "rabbits", "entertain", "itchy", "outstanding", "race", "bead", "art", "committee", "bless", "ready", "birthday", "grin", "load", "noiseless", "replace", "gamy", "serious", "tow", "day", "effect", "faint", "resonant", "book", "wall", "mere", "consist", "hop", "solid", "clean", "seat", "elastic", "apparatus", "quilt", "scold", "dinosaurs", "rinse", "rot", "panicky", "sable", "credit", "sigh", "honorable", "correct", "unwieldy"];
+var hardcoreDictionary=["jazz", "buzz", "hajj", "fuzz", "jinx", "fizz", "puff", "jiff", "razz", "buff", "quiz", "faff", "huff", "zine", "duff", "jays", "jars", "jive", "joke", "boxy", "cozy", "doff", "jeez", "junk", "faze", "jazzy", "fuzzy", "faffs", "fizzy", "jiffs", "swizz", "dizzy", "joked", "jives", "buffs", "muzzy", "joker", "fazes", "foxed", "hazes", "huffs", "faxed", "jokes", "faxes", "foxes", "waxes", "duffs", "fazed", "staff", "babes", "jazzed", "buzzed", "jazzes", "faffed", "fizzed", "buzzer", "bovver", "fuzzed", "joking", "buffed", "foxing", "jagged", "fazing", "faxing", "jogged", "jinxed", "zapped", "jibbed", "buzzes", "fizzes", "faking", "jugged", "jobbed", "hazing", "bopped", "jazzing", "buzzing", "jazzier", "faffing", "fuzzing", "buzzers", "buffing", "jizzing", "jinxing", "puffing", "jobbing", "huffing", "waxwing", "bopping", "jelling", "razzing", "zapping", "jamming", "quaking", "jibbing", "vivaing", "fopping", "cuffing", "queuing", "bumming", "jazziest", "quizzing", "fuzziest", "fizzling", "puppying", "whizzing", "jammiest", "babbling", "bubbling", "quizzers", "bowwowed", "muzzling", "whiffing", "propping", "jemmying", "shivving", "fluffing", "whimming", "puzzling", "blobbing", "muffling", "kookiest", "quaffing", "yummiest", "quipping", "muzziness", "bowwowing", "huzzaing", "powwowing", "bubbliest", "mugginess", "fuzziness", "kookiness", "fluffiest", "peppiness", "wooziness", "jolliness", "doddering", "boohooing", "hoodooing", "cockiness", "juddering", "yammering", "muddiness", "voodooing", "zippering", "giggliest", "gabbiness", "suffering", "squabbing", "zigzagging", "wigwagging", "grogginess", "beekeeping", "mummifying", "fluffiness", "fulfilling", "shabbiness", "revivified", "hobnobbing", "beekeepers", "wheeziness", "shagginess", "sleeveless", "parallaxes", "woolliness", "chumminess", "skyjacking", "grubbiness", "wobbliness", "jaywalkers", "alkalizing", "blabbering", "overjoying"];
+
 var vanillaGameWins = 0;
 var vanillaGameTotal = 0;
 var hardcoreGameWins = 0;
@@ -34,10 +36,11 @@ function initializeGame() {
   strikes = 0;
   if (hardcore) {
     document.getElementById("hardcoreTitle").classList.remove("hidden");
+    var selectWord = hardcoreDictionary[Math.floor(Math.random() * hardcoreDictionary.length)];
   } else {
     document.getElementById("hardcoreTitle").classList.add("hidden");
+    var selectWord = dictionary[Math.floor(Math.random() * dictionary.length)];
   };
-  var selectWord = dictionary[Math.floor(Math.random() * dictionary.length)];
   for (i = 0; i < selectWord.length; i++) {
     var letter = selectWord.charAt(i).toUpperCase();
     currentWord.push(letter);
@@ -65,7 +68,8 @@ function updateDisplay() {
   document.querySelector("#maskedWord").textContent = maskedWord;
   document.querySelector("#usedDisplay").textContent = "Used Letters: " + usedDisplay;
   document.querySelector("#alertDisplay").textContent = alertDisplay;
-  document.querySelector("#strikes").textContent = strikes + " / 7";
+  if (hardcore) {document.querySelector("#strikes").textContent = strikes + " / 10"}
+  else {document.querySelector("#strikes").textContent = strikes + " / 7"}
   document.querySelector("#vanillaRecord").textContent = vanillaGameWins + " / " + vanillaGameTotal;
   document.querySelector("#hardcoreRecord").textContent = hardcoreGameWins + " / " + hardcoreGameTotal;
 };
@@ -87,7 +91,7 @@ function acceptInputs(event) {
     if (hardcore) { strikes++; };
   };
   updateDisplay();
-  if (strikes === 7) lose()
+  if ((!hardcore && strikes === 7) || (hardcore && strikes === 10)) lose()
   else if (!maskedWord.includes("_")) win();
 }
 

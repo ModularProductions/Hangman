@@ -1,7 +1,6 @@
 
 
 clean up code
-add sound effects?
 improve dictionary (maybe add hardcore?)
 preload font?
 
