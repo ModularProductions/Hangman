@@ -163,4 +163,5 @@ function game(event) {
   document.addEventListener("keyup", acceptInputs);
 };
 
-
+//credit to Jon McLoone - "25 Best Hangman Words" @ Wolfram Blog
+//http://blog.wolfram/2010/08/13/25-best-hangman-words/
