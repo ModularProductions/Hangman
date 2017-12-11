@@ -1,7 +1,5 @@
 
 
-clean up code
-improve dictionary (maybe add hardcore?)
 preload font?
 
 making game as object?
